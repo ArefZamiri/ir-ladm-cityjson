@@ -1,0 +1,358 @@
+{
+  "type": "CityJSON",
+  "version": "2.0",
+  "extensions": {
+    "IR_LADM": {
+      "url": "ir-ladm.ext.json",
+      "version": "0.1.0"
+    }
+  },
+  "transform": {
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "translate": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "metadata": {
+    "identifier": "ir-ladm-metro-block-demo-001",
+    "title": "IR LADM + CityJSON pilot block with underground metro",
+    "referenceDate": "2026-05-18",
+    "referenceSystem": "https://www.opengis.net/def/crs/EPSG/0/4979",
+    "geographicalExtent": [
+      0,
+      0,
+      -12,
+      20,
+      20,
+      15
+    ]
+  },
+  "+ir-ladm": {
+    "parties": {
+      "party-001": {
+        "pID": "party-001",
+        "name": "سازمان مترو",
+        "type": "شخص حقوقی",
+        "role": "مالک"
+      }
+    },
+    "baUnits": {
+      "baunit-001": {
+        "uID": "baunit-001",
+        "name": "واحد پایه آزمایشی",
+        "type": "مالکیت پایه"
+      }
+    },
+    "rrrs": {
+      "rrr-001": {
+        "rID": "rrr-001",
+        "rrrClass": "restriction",
+        "type": "خدمات عمومی",
+        "description": "حریم حفاظتی مترو",
+        "partyRequired": false
+      }
+    },
+    "sources": {
+      "source-001": {
+        "sID": "source-001",
+        "availabilityStatus": "پرونده داده آمایی شده موجود"
+      }
+    },
+    "relations": {
+      "rel-001": {
+        "relationType": "baUnitToSpatialUnit",
+        "sourceClass": "IR_BAunit",
+        "sourceID": "baunit-001",
+        "targetClass": "IR_Parcel",
+        "targetID": "parcel-001"
+      },
+      "rel-002": {
+        "relationType": "rrrToLegalSpace",
+        "sourceClass": "IR_Restriction",
+        "sourceID": "rrr-001",
+        "targetClass": "IR_LegalSpaceUtilityNetwork",
+        "targetID": "metro-protection-001"
+      }
+    }
+  },
+  "CityObjects": {
+    "parcel-001": {
+      "type": "+IRParcel",
+      "attributes": {
+        "suID": "su-001",
+        "parcelNumber": "P-001",
+        "buildingOnParcel": true,
+        "dimension": "3D"
+      },
+      "children": [
+        "metro-protection-001"
+      ],
+      "geometry": [
+        {
+          "type": "Solid",
+          "lod": "1",
+          "boundaries": [
+            [
+              [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              [
+                [
+                  4,
+                  7,
+                  6,
+                  5
+                ]
+              ],
+              [
+                [
+                  0,
+                  4,
+                  5,
+                  1
+                ]
+              ],
+              [
+                [
+                  1,
+                  5,
+                  6,
+                  2
+                ]
+              ],
+              [
+                [
+                  2,
+                  6,
+                  7,
+                  3
+                ]
+              ],
+              [
+                [
+                  3,
+                  7,
+                  4,
+                  0
+                ]
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    "metro-tunnel-001": {
+      "type": "Tunnel",
+      "attributes": {
+        "function": "metro tunnel",
+        "+ir-ladm-relatedRRR": "rrr-001",
+        "+ir-ladm-relatedLegalSpace": "metro-protection-001"
+      },
+      "geometry": [
+        {
+          "type": "MultiLineString",
+          "lod": "1",
+          "boundaries": [
+            [
+              8,
+              9
+            ]
+          ]
+        }
+      ]
+    },
+    "metro-protection-001": {
+      "type": "+IRLegalSpaceUtilityNetwork",
+      "parents": [
+        "parcel-001"
+      ],
+      "attributes": {
+        "suID": "su-002",
+        "extPhysicalUtilityNetworkID": "metro-tunnel-001",
+        "status": "فعال",
+        "type": "مترو"
+      },
+      "geometry": [
+        {
+          "type": "Solid",
+          "lod": "1",
+          "boundaries": [
+            [
+              [
+                [
+                  10,
+                  11,
+                  12,
+                  13
+                ]
+              ],
+              [
+                [
+                  14,
+                  17,
+                  16,
+                  15
+                ]
+              ],
+              [
+                [
+                  10,
+                  14,
+                  15,
+                  11
+                ]
+              ],
+              [
+                [
+                  11,
+                  15,
+                  16,
+                  12
+                ]
+              ],
+              [
+                [
+                  12,
+                  16,
+                  17,
+                  13
+                ]
+              ],
+              [
+                [
+                  13,
+                  17,
+                  14,
+                  10
+                ]
+              ]
+            ]
+          ],
+          "semantics": {
+            "surfaces": [
+              {
+                "type": "+IRLegalBoundarySurface",
+                "boundaryType": "metroProtection",
+                "rrrID": "rrr-001",
+                "spatialUnitID": "su-002"
+              }
+            ],
+            "values": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "vertices": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      20,
+      0,
+      0
+    ],
+    [
+      20,
+      20,
+      0
+    ],
+    [
+      0,
+      20,
+      0
+    ],
+    [
+      0,
+      0,
+      15
+    ],
+    [
+      20,
+      0,
+      15
+    ],
+    [
+      20,
+      20,
+      15
+    ],
+    [
+      0,
+      20,
+      15
+    ],
+    [
+      2,
+      10,
+      -6
+    ],
+    [
+      18,
+      10,
+      -6
+    ],
+    [
+      0,
+      8,
+      -8
+    ],
+    [
+      20,
+      8,
+      -8
+    ],
+    [
+      20,
+      12,
+      -8
+    ],
+    [
+      0,
+      12,
+      -8
+    ],
+    [
+      0,
+      8,
+      -4
+    ],
+    [
+      20,
+      8,
+      -4
+    ],
+    [
+      20,
+      12,
+      -4
+    ],
+    [
+      0,
+      12,
+      -4
+    ]
+  ]
+}

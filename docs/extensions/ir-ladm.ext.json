@@ -1,0 +1,1895 @@
+{
+  "type": "CityJSONExtension",
+  "name": "IR_LADM",
+  "description": "Draft CityJSON Extension v0.1.0 generated from the Iranian LADM country profile XMI. It maps administrative/legal LADM classes to +ir-ladm root registries and spatial classes to CityJSON extension CityObjects.",
+  "url": "https://example.org/extensions/ir-ladm/0.1.0/ir-ladm.ext.json",
+  "version": "0.1.0",
+  "versionCityJSON": "2.0",
+  "definitions": {
+    "Measure": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "uom": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "uom"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "additionalProperties": true
+    },
+    "Fraction": {
+      "type": "object",
+      "properties": {
+        "numerator": {
+          "type": "integer"
+        },
+        "denominator": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "additionalProperties": false
+    },
+    "RRRClass": {
+      "type": "string",
+      "enum": [
+        "right",
+        "restriction",
+        "responsibility",
+        "mortgage",
+        "rrr"
+      ]
+    },
+    "Relation": {
+      "type": "object",
+      "properties": {
+        "relationType": {
+          "type": "string"
+        },
+        "sourceClass": {
+          "type": "string"
+        },
+        "sourceID": {
+          "type": "string"
+        },
+        "targetClass": {
+          "type": "string"
+        },
+        "targetID": {
+          "type": "string"
+        },
+        "associationID": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date"
+        },
+        "validTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      },
+      "required": [
+        "relationType",
+        "sourceID",
+        "targetID"
+      ],
+      "additionalProperties": true
+    },
+    "AdministrativeSourceType": {
+      "type": "string",
+      "enum": [
+        "سند رسمی",
+        "سند عادی",
+        "اظهار نامه",
+        "تحدید حدود",
+        "سند انتقال",
+        "رای هیئت",
+        "مدارک هویتی"
+      ]
+    },
+    "AreaType": {
+      "type": "string",
+      "enum": [
+        "مساحت هندسی",
+        "مساحت ثبتی"
+      ]
+    },
+    "AvailabilityStatusType": {
+      "type": "string",
+      "enum": [
+        "پرونده فیزیکی موجود",
+        "پرونده اسکن شده موجود",
+        "پرونده داده آمایی شده موجود",
+        "پرونده فیزیکی ناقص",
+        "پرونده اسکن شده ناقص",
+        "پرونده داده آمایی شده ناقص",
+        "فاقد پرونده فیزیکی",
+        "فاقد پرونده اسکن شده",
+        "فاقد پرونده داده آمایی شده"
+      ]
+    },
+    "BAUnitType": {
+      "type": "string",
+      "enum": [
+        "مالکیت پایه",
+        "اجاره",
+        "حق استفاده"
+      ]
+    },
+    "BuildingUnit_Type": {
+      "type": "string",
+      "enum": [
+        "اختصاصی",
+        "اشتراکی"
+      ]
+    },
+    "Cadastre_Type": {
+      "type": "string",
+      "enum": [
+        "شهری",
+        "روستایی",
+        "کشاورزی",
+        "ملی"
+      ]
+    },
+    "DimensionType": {
+      "type": "string",
+      "enum": [
+        "0D",
+        "1D",
+        "2D",
+        "3D"
+      ]
+    },
+    "GroupPartyType": {
+      "type": "string",
+      "enum": [
+        "دستگاه متولی",
+        "دستگاه های مرتبط",
+        "ذی‌نفعان",
+        "گروه افراد"
+      ]
+    },
+    "LandImprovment_Type": {
+      "type": "string",
+      "enum": [
+        "ساختمانی",
+        "کشاورزی"
+      ]
+    },
+    "LandUse_Type": {
+      "type": "string",
+      "enum": [
+        "مسکونی",
+        "تجاری",
+        "اداری",
+        "صنعتی",
+        "زراعی- باغی",
+        "تفریحی",
+        "دامداری",
+        "گاوداری",
+        "مرغ داری"
+      ]
+    },
+    "LevelContent_Type": {
+      "type": "string",
+      "enum": [
+        "ساختمان",
+        "شبکه",
+        "مختلط",
+        "محدودیت"
+      ]
+    },
+    "MortgageType": {
+      "type": "string",
+      "enum": [
+        "رهن حقیقی",
+        "رهن حقوقی"
+      ]
+    },
+    "PartyRoleType": {
+      "type": "string",
+      "enum": [
+        "مالک",
+        "متقاضی",
+        "اداره ثبت اسناد و املاک",
+        "دفتر اسناد رسمی",
+        "مشاورین املاک",
+        "وکلا",
+        "بانک",
+        "نقشه برداران",
+        "شرکت مشاور"
+      ]
+    },
+    "PartyType": {
+      "type": "string",
+      "enum": [
+        "دستگاه مربوطه",
+        "شخص حقوقی",
+        "شخص حقیقی"
+      ]
+    },
+    "PointType": {
+      "type": "string",
+      "enum": [
+        "نقطه مبنا",
+        "نقطه کنترل",
+        "نقطه دارای اعتبار",
+        "نقطه بدون اعتبار"
+      ]
+    },
+    "Property_Type": {
+      "type": "string",
+      "enum": [
+        "زمین",
+        "زمین با بنای احداثی",
+        "زمین مزروعی",
+        "باغ",
+        "ساختمان"
+      ]
+    },
+    "RegisterType": {
+      "type": "string",
+      "enum": [
+        "ملی",
+        "مستثنیات"
+      ]
+    },
+    "ResponsibilityType": {
+      "type": "string",
+      "enum": [
+        "تعمیر و نگهداری بنا",
+        "مالیات",
+        "نگهداری توسط دستگاه‌های اجرایی"
+      ]
+    },
+    "RestrictionType": {
+      "type": "string",
+      "enum": [
+        "خدمات عمومی",
+        "بناها و یادمان ها",
+        "وام مسکن",
+        "محدودیت ساخت و ساز",
+        "ارتفاق عمومی",
+        "ارتفاق خصوصی",
+        "بازداشت",
+        "اجاره به شرط تملیک"
+      ]
+    },
+    "RightType": {
+      "type": "string",
+      "enum": [
+        "مالکیت رسمی",
+        "مالکیت عادی",
+        "مالکیت مفروزی",
+        "مالکیت مشاعی",
+        "حق ارتفاق",
+        "حق انتفاع",
+        "حق آب",
+        "حق چرا",
+        "اجاره"
+      ]
+    },
+    "SpatialSourceType": {
+      "type": "string",
+      "enum": [
+        "کروکی میدانی",
+        "جی پی اس",
+        "روش فتوگرامتری",
+        "اندازه‌گیری نسبی"
+      ]
+    },
+    "StructureType": {
+      "type": "string",
+      "enum": [
+        "نقطه",
+        "خط",
+        "پلیگون"
+      ]
+    },
+    "SurfaceRelationType": {
+      "type": "string",
+      "enum": [
+        "روی سطح",
+        "بالا",
+        "پایین",
+        "ترکیبی"
+      ]
+    },
+    "UtilityNetworkStatusType": {
+      "type": "string",
+      "enum": [
+        "فعال",
+        "غیرفعال",
+        "در دست طراحی"
+      ]
+    },
+    "UtilityNetworkType": {
+      "type": "string",
+      "enum": [
+        "آب",
+        "فاضلاب",
+        "گاز",
+        "برق",
+        "مخابرات",
+        "پتروشیمی",
+        "حمل و نقل"
+      ]
+    },
+    "IR_RRR": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "rID": {
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/definitions/Fraction"
+        },
+        "shareCheck": {
+          "type": "boolean"
+        },
+        "timeSpec": {
+          "type": "string"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "SabtCheck": {
+          "type": "boolean"
+        },
+        "rrrClass": {
+          "const": "rrr"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_AdministrativeSource": {
+      "type": "object",
+      "properties": {
+        "fileNumber": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/AdministrativeSourceType"
+        },
+        "acceptance": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "availabilityStatus": {
+          "$ref": "#/definitions/AvailabilityStatusType"
+        },
+        "extArchiveID": {
+          "type": "string"
+        },
+        "lifeSpanStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "maintype": {
+          "type": "string"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "recordation": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sID": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "submission": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_BAunit": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/BAUnitType"
+        },
+        "uID": {
+          "type": "string"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_GroupParty": {
+      "type": "object",
+      "properties": {
+        "groupID": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/GroupPartyType"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Level": {
+      "type": "object",
+      "properties": {
+        "lID": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "registerType": {
+          "$ref": "#/definitions/RegisterType"
+        },
+        "structure": {
+          "$ref": "#/definitions/StructureType"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Mortgage": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/Money"
+        },
+        "interestRate": {
+          "type": "number"
+        },
+        "ranking": {
+          "type": "integer"
+        },
+        "mortgageType": {
+          "$ref": "#/definitions/MortgageType"
+        },
+        "partyRequired": {
+          "type": "boolean"
+        },
+        "restrictionType": {
+          "$ref": "#/definitions/RestrictionType"
+        },
+        "rID": {
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/definitions/Fraction"
+        },
+        "shareCheck": {
+          "type": "boolean"
+        },
+        "timeSpec": {
+          "type": "string"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "rrrClass": {
+          "const": "mortgage"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Party": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pID": {
+          "type": "string"
+        },
+        "extPID": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/PartyRoleType"
+        },
+        "type": {
+          "$ref": "#/definitions/PartyType"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_PartyMember": {
+      "type": "object",
+      "properties": {
+        "share": {
+          "$ref": "#/definitions/Fraction"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Responsibility": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ResponsibilityType"
+        },
+        "share": {
+          "$ref": "#/definitions/Fraction"
+        },
+        "description": {
+          "type": "string"
+        },
+        "rID": {
+          "type": "string"
+        },
+        "shareCheck": {
+          "type": "boolean"
+        },
+        "timeSpec": {
+          "type": "string"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "rrrClass": {
+          "const": "responsibility"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Restriction": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/RestrictionType"
+        },
+        "share": {
+          "$ref": "#/definitions/Fraction"
+        },
+        "partyRequired": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "rID": {
+          "type": "string"
+        },
+        "shareCheck": {
+          "type": "boolean"
+        },
+        "timeSpec": {
+          "type": "string"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "rrrClass": {
+          "const": "restriction"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Right": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/RightType"
+        },
+        "share": {
+          "$ref": "#/definitions/Fraction"
+        },
+        "description": {
+          "type": "string"
+        },
+        "rID": {
+          "type": "string"
+        },
+        "shareCheck": {
+          "type": "boolean"
+        },
+        "timeSpec": {
+          "type": "string"
+        },
+        "beginLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endLifespanVersion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "rrrClass": {
+          "const": "right"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_Source": {
+      "type": "object",
+      "properties": {
+        "acceptance": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "availabilityStatus": {
+          "$ref": "#/definitions/AvailabilityStatusType"
+        },
+        "extArchiveID": {
+          "type": "string"
+        },
+        "lifeSpanStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "maintype": {
+          "type": "string"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "recordation": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sID": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "submission": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "IR_SpatialSource": {
+      "type": "object",
+      "properties": {
+        "fileNumber": {
+          "type": "string"
+        },
+        "measurements": {
+          "type": "string"
+        },
+        "procedure": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/SpatialSourceType"
+        },
+        "acceptance": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "availabilityStatus": {
+          "$ref": "#/definitions/AvailabilityStatusType"
+        },
+        "extArchiveID": {
+          "type": "string"
+        },
+        "lifeSpanStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "maintype": {
+          "type": "string"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "recordation": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sID": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "submission": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "extraAttributes": {
+    "Building": {
+      "+ir-ladm-baUnitID": {
+        "type": "string"
+      },
+      "+ir-ladm-spatialUnitID": {
+        "type": "string"
+      },
+      "+ir-ladm-rrrIDs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "Tunnel": {
+      "+ir-ladm-relatedRRR": {
+        "type": "string"
+      },
+      "+ir-ladm-relatedLegalSpace": {
+        "type": "string"
+      }
+    },
+    "LandUse": {
+      "+ir-ladm-spatialUnitID": {
+        "type": "string"
+      }
+    }
+  },
+  "extraCityObjects": {
+    "+IRBoundaryFace": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRBoundaryFace"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "bfID": {
+                  "type": "string"
+                },
+                "locationByText": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRBoundaryFaceString": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRBoundaryFaceString"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiLineString"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "bfsID": {
+                  "type": "string"
+                },
+                "locationByText": {
+                  "type": "string"
+                },
+                "Type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRCadastralUnit": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRCadastralUnit"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "suID": {
+                      "type": "string"
+                    },
+                    "area": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/AreaType"
+                    },
+                    "dimension": {
+                      "$ref": "#/definitions/DimensionType"
+                    },
+                    "extAddressID": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "referencePoint": {
+                      "type": "string"
+                    },
+                    "surfaceRelation": {
+                      "$ref": "#/definitions/SurfaceRelationType"
+                    },
+                    "volume": {
+                      "type": "string"
+                    },
+                    "beginLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "endLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "quality": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "ZoneRef": {
+                      "type": "integer"
+                    },
+                    "tasbitCheck": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "CadastreType": {
+                      "$ref": "#/definitions/Cadastre_Type"
+                    },
+                    "landuse": {
+                      "$ref": "#/definitions/LandUse_Type"
+                    },
+                    "propertyType": {
+                      "$ref": "#/definitions/Property_Type"
+                    },
+                    "quality": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "extCID": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRLandImprovment": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRLandImprovment"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "suID": {
+                      "type": "string"
+                    },
+                    "area": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/AreaType"
+                    },
+                    "dimension": {
+                      "$ref": "#/definitions/DimensionType"
+                    },
+                    "extAddressID": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "referencePoint": {
+                      "type": "string"
+                    },
+                    "surfaceRelation": {
+                      "$ref": "#/definitions/SurfaceRelationType"
+                    },
+                    "volume": {
+                      "type": "string"
+                    },
+                    "beginLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "endLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "quality": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "ZoneRef": {
+                      "type": "integer"
+                    },
+                    "tasbitCheck": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/LandImprovment_Type"
+                    },
+                    "price": {
+                      "$ref": "#/definitions/Money"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRLegalSpaceBuildingUnit": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRLegalSpaceBuildingUnit"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "suID": {
+                      "type": "string"
+                    },
+                    "area": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/AreaType"
+                    },
+                    "dimension": {
+                      "$ref": "#/definitions/DimensionType"
+                    },
+                    "extAddressID": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "referencePoint": {
+                      "type": "string"
+                    },
+                    "surfaceRelation": {
+                      "$ref": "#/definitions/SurfaceRelationType"
+                    },
+                    "volume": {
+                      "type": "string"
+                    },
+                    "beginLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "endLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "quality": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "ZoneRef": {
+                      "type": "integer"
+                    },
+                    "tasbitCheck": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "extPhysicalBuildingUnitID": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/BuildingUnit_Type"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRLegalSpaceUtilityNetwork": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRLegalSpaceUtilityNetwork"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiLineString"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "suID": {
+                      "type": "string"
+                    },
+                    "area": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/AreaType"
+                    },
+                    "dimension": {
+                      "$ref": "#/definitions/DimensionType"
+                    },
+                    "extAddressID": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "referencePoint": {
+                      "type": "string"
+                    },
+                    "surfaceRelation": {
+                      "$ref": "#/definitions/SurfaceRelationType"
+                    },
+                    "volume": {
+                      "type": "string"
+                    },
+                    "beginLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "endLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "quality": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "ZoneRef": {
+                      "type": "integer"
+                    },
+                    "tasbitCheck": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "extPhysicalUtilityNetworkID": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "$ref": "#/definitions/UtilityNetworkStatusType"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/UtilityNetworkType"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRParcel": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRParcel"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "suID": {
+                      "type": "string"
+                    },
+                    "area": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/AreaType"
+                    },
+                    "dimension": {
+                      "$ref": "#/definitions/DimensionType"
+                    },
+                    "extAddressID": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "referencePoint": {
+                      "type": "string"
+                    },
+                    "surfaceRelation": {
+                      "$ref": "#/definitions/SurfaceRelationType"
+                    },
+                    "volume": {
+                      "type": "string"
+                    },
+                    "beginLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "endLifespanVersion": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "quality": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "ZoneRef": {
+                      "type": "integer"
+                    },
+                    "tasbitCheck": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "buildingOnParcel": {
+                      "type": "boolean"
+                    },
+                    "buildingAsPartOfParcel": {
+                      "type": "boolean"
+                    },
+                    "rightOfBuilding": {
+                      "type": "boolean"
+                    },
+                    "parcelNumber": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "$ref": "#/definitions/Money"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRPoint": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRPoint"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiPoint"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "X": {
+                  "type": "number"
+                },
+                "Y": {
+                  "type": "number"
+                },
+                "Z": {
+                  "type": "number"
+                },
+                "Zone": {
+                  "type": "integer"
+                },
+                "originalLocation": {
+                  "type": "string"
+                },
+                "pID": {
+                  "type": "string"
+                },
+                "pointType": {
+                  "$ref": "#/definitions/PointType"
+                },
+                "productionMethod": {
+                  "type": "string"
+                },
+                "transAndResult": {
+                  "type": "string"
+                },
+                "beginLifespanVersion": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endLifespanVersion": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "quality": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRSpatialUnit": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRSpatialUnit"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "suID": {
+                  "type": "string"
+                },
+                "area": {
+                  "type": "string"
+                },
+                "type": {
+                  "$ref": "#/definitions/AreaType"
+                },
+                "dimension": {
+                  "$ref": "#/definitions/DimensionType"
+                },
+                "extAddressID": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "referencePoint": {
+                  "type": "string"
+                },
+                "surfaceRelation": {
+                  "$ref": "#/definitions/SurfaceRelationType"
+                },
+                "volume": {
+                  "type": "string"
+                },
+                "beginLifespanVersion": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endLifespanVersion": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "quality": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "ZoneRef": {
+                  "type": "integer"
+                },
+                "tasbitCheck": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    },
+    "+IRSpatialUnitGroup": {
+      "allOf": [
+        {
+          "$ref": "cityobjects.schema.json#/_AbstractCityObject"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "+IRSpatialUnitGroup"
+              ]
+            },
+            "geometry": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSurface"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/Solid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/CompositeSolid"
+                  },
+                  {
+                    "$ref": "geomprimitives.schema.json#/MultiSolid"
+                  }
+                ]
+              }
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "hierarchyLevel": {
+                  "type": "integer"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "referencePoint": {
+                  "type": "string"
+                },
+                "sugID": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ]
+    }
+  },
+  "extraRootProperties": {
+    "+ir-ladm": {
+      "type": "object",
+      "properties": {
+        "parties": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/IR_Party"
+          }
+        },
+        "groupParties": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/IR_GroupParty"
+          }
+        },
+        "partyMembers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/IR_PartyMember"
+          }
+        },
+        "baUnits": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/IR_BAunit"
+          }
+        },
+        "rrrs": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/IR_RRR"
+              },
+              {
+                "$ref": "#/definitions/IR_Right"
+              },
+              {
+                "$ref": "#/definitions/IR_Restriction"
+              },
+              {
+                "$ref": "#/definitions/IR_Responsibility"
+              },
+              {
+                "$ref": "#/definitions/IR_Mortgage"
+              }
+            ]
+          }
+        },
+        "sources": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/IR_Source"
+              },
+              {
+                "$ref": "#/definitions/IR_AdministrativeSource"
+              },
+              {
+                "$ref": "#/definitions/IR_SpatialSource"
+              }
+            ]
+          }
+        },
+        "levels": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/IR_Level"
+          }
+        },
+        "relations": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Relation"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "extraSemanticSurfaces": {
+    "+IRLegalBoundarySurface": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "+IRLegalBoundarySurface"
+          ]
+        },
+        "boundaryType": {
+          "type": "string"
+        },
+        "sourceID": {
+          "type": "string"
+        },
+        "rrrID": {
+          "type": "string"
+        },
+        "spatialUnitID": {
+          "type": "string"
+        },
+        "accuracy": {
+          "$ref": "#/definitions/Measure"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "+IRSurveyedSurface": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "+IRSurveyedSurface"
+          ]
+        },
+        "sourceID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "+IRProjectedSurface": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "+IRProjectedSurface"
+          ]
+        },
+        "sourceID": {
+          "type": "string"
+        },
+        "projectionMethod": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
