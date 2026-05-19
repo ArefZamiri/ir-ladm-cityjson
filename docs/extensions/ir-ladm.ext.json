@@ -2,7 +2,7 @@
   "type": "CityJSONExtension",
   "name": "IR_LADM",
   "description": "Draft CityJSON Extension v0.1.0 generated from the Iranian LADM country profile XMI. It maps administrative/legal LADM classes to +ir-ladm root registries and spatial classes to CityJSON extension CityObjects.",
-  "url": "https://example.org/extensions/ir-ladm/0.1.0/ir-ladm.ext.json",
+  "url": "https://arefzamiri.github.io/ir-ladm-cityjson/extensions/ir-ladm.ext.json",
   "version": "0.1.0",
   "versionCityJSON": "2.0",
   "definitions": {
