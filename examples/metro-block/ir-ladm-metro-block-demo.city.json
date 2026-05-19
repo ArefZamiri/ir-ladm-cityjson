@@ -3,7 +3,7 @@
   "version": "2.0",
   "extensions": {
     "IR_LADM": {
-      "url": "ir-ladm.ext.json",
+      "url": "https://arefzamiri.github.io/ir-ladm-cityjson/extensions/ir-ladm.ext.json",
       "version": "0.1.0"
     }
   },
